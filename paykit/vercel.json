@@ -1,0 +1,4 @@
+{
+  "buildCommand": "npx vite build --config demo/vite.config.ts",
+  "outputDirectory": "demo/dist"
+}

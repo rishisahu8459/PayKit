@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "declaration": true, "outDir": "dist", "rootDir": "src", "types": ["react"] },
+  "include": ["src"],
+  "exclude": ["src/**/__tests__/**", "src/setupTests.ts"]
+}

@@ -1,0 +1,26 @@
+/* Design tokens. Override these variables to rebrand without changing components. */
+:root {
+  --paykit-bg: #ffffff; --paykit-fg: #14284b; --paykit-muted: #4a5a70; --paykit-accent: #1d6fa5;
+  --paykit-success-bg: #e7f6ee; --paykit-success-fg: #13623a;
+  --paykit-danger-bg: #fdecec; --paykit-danger-fg: #8a1c14;
+  --paykit-radius: 8px; --paykit-font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+[data-theme='dark'] {
+  --paykit-bg: #0f1724; --paykit-fg: #e8eef7; --paykit-muted: #a9b7c9; --paykit-accent: #6fb3e6;
+  --paykit-success-bg: #123524; --paykit-success-fg: #9ee2b8;
+  --paykit-danger-bg: #3a1716; --paykit-danger-fg: #ffb4ad;
+}
+.paykit-summary, .paykit-picker, .paykit-status {
+  background: var(--paykit-bg); color: var(--paykit-fg); font-family: var(--paykit-font);
+  border-radius: var(--paykit-radius); padding: 16px;
+}
+.paykit-summary ul { list-style: none; padding: 0; }
+.paykit-summary li { display: flex; justify-content: space-between; padding: 6px 0; }
+.paykit-summary__total { display: flex; justify-content: space-between; border-top: 1px solid var(--paykit-muted); padding-top: 8px; }
+.paykit-picker { border: 1px solid var(--paykit-muted); }
+.paykit-picker__option { padding: 4px 0; }
+.paykit-picker__hint { color: var(--paykit-muted); }
+.paykit-status--success { background: var(--paykit-success-bg); color: var(--paykit-success-fg); }
+.paykit-status--failed { background: var(--paykit-danger-bg); color: var(--paykit-danger-fg); }
+.paykit-status--processing { color: var(--paykit-accent); }
+:focus-visible { outline: 3px solid var(--paykit-accent); outline-offset: 2px; }

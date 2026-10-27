@@ -1,0 +1,40 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>PayKit test checkout</title></head>
+<body style="font-family:system-ui;max-width:640px;margin:2rem auto">
+<h1>PayKit test checkout</h1>
+<p>Paste the values from the <code>POST /orders</code> response, then click Pay.</p>
+<label>API URL<br><input id="api" size="70"></label><br><br>
+<label>orderId<br><input id="orderId" size="40"></label><br>
+<label>razorpayOrderId<br><input id="rzpOrderId" size="40"></label><br>
+<label>keyId<br><input id="keyId" size="40"></label><br>
+<label>amountMinor (paise)<br><input id="amount" size="20"></label><br><br>
+<button id="pay">Pay with Razorpay test checkout</button>
+<pre id="out"></pre>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+$('pay').onclick = () => {
+  const rzp = new Razorpay({
+    key: $('keyId').value,
+    amount: $('amount').value,
+    currency: 'INR',
+    order_id: $('rzpOrderId').value,
+    name: 'PayKit test',
+    handler: async (r) => {
+      const res = await fetch($('api').value + '/payments/verify', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          orderId: $('orderId').value,
+          razorpay_order_id: r.razorpay_order_id,
+          razorpay_payment_id: r.razorpay_payment_id,
+          razorpay_signature: r.razorpay_signature,
+        }),
+      });
+      $('out').textContent = res.status + ' ' + (await res.text());
+    },
+  });
+  rzp.open();
+};
+</script>
+</body></html>
